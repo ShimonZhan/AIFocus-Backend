@@ -1,0 +1,111 @@
+server:
+  port: 9876
+  servlet:
+    context-path: /
+
+jasypt:
+  encryptor:
+    password: *********
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-wz9zspr9dxv1x044c125010ym.mysql.rds.aliyuncs.com:3306/aifocus?characterEncoding=UTF-8&useUnicode=true&useSSL=true&serverTimezone=Asia/Shanghai&&allowPublicKeyRetrieval=true
+    username: aifocus
+    password: ENC(1q2Hq0JviAC+wA+QE+yG+rDSz1g4NvxNv2N3tY/srFsC6Ku5xwVwcXClKZ2i6bs5)
+  redis:
+    database: 0
+    host: node3.zhanxm.cn
+    port: 32768
+    password: ENC(7VjmclTl+Ha4j3hRDeewwsNLnq6DX6wZfZ/s5ZKrW8sX8weyQJWzKVyKPgm+yU1v)
+  cache:
+    type: redis
+  security:
+    user:
+      name: admin
+      password: ENC(KuHebn1Pj+MuxQshsYNCMRNLBOoAxo8KG+paG4cKz+QjNytzy4104jvtooVPUDYTfyNilz7aiHvvD4tGMO1Hb5ftlZx8SZTVZ/8kl9HKYVr4YoptdHVEupmER4waNlCv)
+  mail:
+    protocol: smtp
+    host: smtp.qq.com
+    username: AIExam2020@qq.com
+    password: ENC(FYQkaO2rPaL/c0tEXN7ckYEXA80FK8s5WHV9Dnwkn2JcL/VWfnVnVLq8JbFffSRLgsD9wPGMD8XRcpGVoQjufw==)
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: false
+    test-connection: false
+  rabbitmq:
+    username: root
+    password: ENC(axyNLAIVuNCyYgDmHhDSx7PnHrqt7iWxFVZ5qi2xn5m5MbfwMnAxwC+C6O/N6g6P)
+    host: node2.zhanxm.cn
+    port: 5672
+    cache:
+      connection:
+        mode: channel
+    template:
+      retry:
+        enabled: true
+        initial-interval: 2s
+      mandatory: true
+    virtual-host: /
+    connection-timeout: 15s
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        concurrency: 5
+        max-concurrency: 10
+        acknowledge-mode: manual
+    publisher-returns: true
+    publisher-confirms: true
+
+#  output:
+#    ansi:
+#      enabled: always
+
+logging:
+  level:
+    root: info
+  #    org.cmyk.aifocus.amqp: debug
+  #    org.cmyk.aifocus.config: debug
+  #    org.cmyk.aifocus.controller: debug
+  #    org.cmyk.aifocus.task: debug
+#    org.cmyk.aifocus.dao: trace
+  pattern:
+    console: '[%p] %file:%line ➜ %m%n'
+#    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] %file:%line - %m%n'
+#    console: '%boldMagenta(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight([%p]) %green(%file:%line) %red(-) %cyan(%m%n)'
+
+#    console: '%highlight([%p]) %green(%file:%line) %red(-) %m%n'
+
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: assign_uuid
+    banner: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+#  type-aliases-package: org.cmyk.aifocus.entity
+#  mapper-locations: classpath*:/mapper/*.xml
+
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /api
+  server:
+    forward-headers-strategy: framework
+
+upyun:
+  oss:
+    space: aiexam
+    user: zhan
+    password: ENC(f1Z0tC63pDIO1WDv4bBpMP6x3AmmbOjqf2+BlK4YDg5Bq/DgLgWEFbXoe49IQertn4PTo9A8KpJ7HYOU35NbiZSrXhAwJdzbUvDxTpAx5FA=)
